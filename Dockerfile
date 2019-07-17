@@ -1,8 +1,7 @@
-FROM tomcat:8-jre8-alpine
+FROM tomcat:8.5.35-jre8
+MAINTAINER De1mos <de1m0s242@gmail.com>
 
-RUN apk upgrade --update && \
-    apk add --no-cache gettext && \
-    rm -rf /tmp/* /var/cache/apk/*
+RUN apt-get update && apt-get install -y gettext && apt-get install -y --no-install-recommends openjfx
 
 COPY tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml.tmpl
 COPY context.xml /usr/local/tomcat/conf/
